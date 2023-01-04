@@ -137,6 +137,12 @@ pub struct rd_kafka_acl_result_s {
     _unused: [u8; 0],
 }
 pub type rd_kafka_acl_result_t = rd_kafka_acl_result_s;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct rd_kafka_records_result_s {
+    _unused: [u8; 0],
+}
+pub type rd_kafka_records_result_t = rd_kafka_records_result_s;
 #[repr(i32)]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq, TryFromPrimitive)]
 pub enum rd_kafka_resp_err_t {
@@ -2130,6 +2136,11 @@ extern "C" {
     pub fn rd_kafka_group_result_partitions(
         groupres: *const rd_kafka_group_result_t,
     ) -> *const rd_kafka_topic_partition_list_t;
+}
+extern "C" {
+    pub fn rd_kafka_records_result_error(
+        recordsres: *const rd_kafka_records_result_t,
+    ) -> *const rd_kafka_error_t;
 }
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
